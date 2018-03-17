@@ -30,6 +30,7 @@ setup(
     package_data={
         '': ['LICENSE', '*.rst', 'MANIFEST.in'],
     },
+    include_package_data=True,
 
     classifiers=[
         'Development Status :: 4 - Beta',
