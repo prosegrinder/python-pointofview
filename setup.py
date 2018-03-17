@@ -20,7 +20,7 @@ setup(
     author="David L. Day",
     author_email="dday376@gmail.com",
 
-    description="A Python package for determine a text's point of view (first, second, third, or unknown).",
+    description="A Python package for determining a piece of text's point of view (first, second, third, or unknown).",
     long_description=LONG_DESCRIPTION,
 
     packages=[
