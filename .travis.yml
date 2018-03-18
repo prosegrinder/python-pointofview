@@ -21,7 +21,7 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
   - python ./setup.py develop
-  - pytest test/*
+  - pytest tests/*
 
 after_script:
 - pip install pycodestyle pyflakes
