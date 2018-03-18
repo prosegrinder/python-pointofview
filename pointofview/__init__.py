@@ -9,10 +9,6 @@ import pkg_resources
 __version__ = pkg_resources.resource_string(
     'pointofview', 'VERSION').decode('utf-8').strip()
 
-__author__ = 'David L. Day <dday376@gmail.com>'
-__all__ = []
-
-# TODO: Add contractions with smartquotes (’).
 POV_WORDS = {
     'first':
         ["i", "i'm", "i'll", "i'd", "i've", "me", "mine", "myself", "we",
@@ -24,17 +20,21 @@ POV_WORDS = {
         ["he", "he's", "he'll", "he'd", "him", "his", "himself", "she", "she's",
             "she'll", "she'd", "her", "hers", "herself", "it", "it's", "it'll",
             "it'd", "itself", "they", "they're", "they'll", "they'd", "they've",
-            "them", "theirs", "themselves"]
+            "them", "their", "theirs", "themselves"]
 }
 
 RE_WORDS = re.compile(r"[^\w’']+")
 
 
+def _normalize_word(word):
+    return word.strip().lower().replace("’", "'")
+
+
 def get_word_pov(word):
     for pov in POV_WORDS:
-        if word in POV_WORDS[pov]:
+        if _normalize_word(word) in POV_WORDS[pov]:
             return pov
-    return 'none'
+    return None
 
 
 def parse_pov_words(text):
@@ -42,12 +42,12 @@ def parse_pov_words(text):
         'first': [],
         'second': [],
         'third': [],
-        'none': []
     }
     words = re.split(RE_WORDS, text.strip().lower())
     for word in words:
         pov = get_word_pov(word)
-        pov_words[pov].append(word)
+        if pov != None:
+            pov_words[pov].append(word)
     return pov_words
 
 
@@ -60,4 +60,4 @@ def get_pov(text):
     elif len(pov_words['third']) > 0:
         return 'third'
     else:
-        return 'none'
+        return None
