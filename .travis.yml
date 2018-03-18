@@ -15,19 +15,15 @@ sudo: false
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-  - pip install coverage
+  - pip install -U pip
+  - pip install -U pytest
 
 # command to run tests, e.g. python setup.py test
 script:
-  - coverage run --source pointofview setup.py test --verbose
-  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then python -m doctest pointofview/__init__.py; fi
-
-after_success:
-- pip install coveralls
-- coveralls # send coverage to coveralls.io
+  - python ./setup.py develop
+  - pytest test/*
 
 after_script:
-- coverage report                     # show coverage on cmd line
 - pip install pycodestyle pyflakes
 - pyflakes . | tee >(wc -l)           # static analysis
 - pycodestyle --statistics --count .  # static analysis
