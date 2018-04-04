@@ -3,12 +3,14 @@
 """pointofview - A Python package for determining a piece of text's point of view (first, second, third, or unknown)."""
 
 import re
+from collections import OrderedDict
 
 import pkg_resources
 
 __version__ = pkg_resources.resource_string(
     'pointofview', 'VERSION').decode('utf-8').strip()
 
+# TODO: Needs to be an ordered dict.
 POV_WORDS = {
     'first':
         ["i", "i'm", "i'll", "i'd", "i've", "me", "mine", "myself", "we",
@@ -30,34 +32,30 @@ def _normalize_word(word):
     return word.strip().lower().replace("’", "'")
 
 
-def get_word_pov(word):
-    for pov in POV_WORDS:
-        if _normalize_word(word) in POV_WORDS[pov]:
+def get_word_pov(word, pov_words=POV_WORDS, normalize_words=True):
+    if normalize_words:
+        word = _normalize_word(word)
+    for pov in pov_words:
+        if word in pov_words[pov]:
             return pov
     return None
 
 
-def parse_pov_words(text):
-    pov_words = {
-        'first': [],
-        'second': [],
-        'third': [],
-    }
+def parse_pov_words(text, pov_words=POV_WORDS, normalize_words=True):
+    text_pov_words = {}
     words = re.split(RE_WORDS, text.strip().lower())
+    for pov in pov_words:
+        text_pov_words[pov] = []
     for word in words:
-        pov = get_word_pov(word)
-        if pov != None:
-            pov_words[pov].append(word)
-    return pov_words
+        word_pov = get_word_pov(word, pov_words, normalize_words)
+        if word_pov != None:
+            text_pov_words[pov].append(word)
+    return text_pov_words
 
 
-def get_pov(text):
-    pov_words = parse_pov_words(text)
-    if len(pov_words['first']) > 0:
-        return 'first'
-    elif len(pov_words['second']) > 0:
-        return 'second'
-    elif len(pov_words['third']) > 0:
-        return 'third'
-    else:
-        return None
+def get_text_pov(text, pov_words=POV_WORDS, normalize_words=True):
+    text_pov_words = parse_pov_words(text, pov_words, normalize_words)
+    for pov in POV_WORDS:
+        if len(text_pov_words[pov]) > 0:
+            return pov
+    return None
