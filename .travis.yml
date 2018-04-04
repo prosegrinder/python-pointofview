@@ -22,8 +22,3 @@ install:
 script:
   - python ./setup.py develop
   - pytest tests/*
-
-after_script:
-- pip install pycodestyle pyflakes
-- pyflakes . | tee >(wc -l)           # static analysis
-- pycodestyle --statistics --count .  # static analysis
