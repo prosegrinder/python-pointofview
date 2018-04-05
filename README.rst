@@ -35,11 +35,11 @@ You can also install it from source::
 Usage
 -----
 
-``pointofview`` guesses a text's point of view by counting point of view pronouns. The main function ``get_pov()`` will return 'first', 'second', 'third', or null (Python's ``None`` object)::
+``pointofview`` guesses a text's point of view by counting point of view pronouns. The main function ``get_text_pov()`` will return 'first', 'second', 'third', or null (Python's ``None`` object)::
 
     >>> import pointofview
     >>> text = "I'm a piece of text written in first person! What are you?"
-    >>> pointofview.get_pov(text)
+    >>> pointofview.get_text_pov(text)
     'first'
 
 There are two other helper functions as well.
