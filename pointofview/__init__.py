@@ -10,7 +10,10 @@ import pkg_resources
 __version__ = pkg_resources.resource_string(
     'pointofview', 'VERSION').decode('utf-8').strip()
 
-# NOTE: Point of view is in order of precedence.
+# NOTE:
+# Words are expected to be in lower case.
+#
+# Point of view is in order of precedence.
 # First person PoV can also contain second and third person words.
 # Second person PoV can also contain third person words.
 # Third person PoV can only contain third person words.
