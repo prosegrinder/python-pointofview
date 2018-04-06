@@ -31,33 +31,28 @@ POV_WORDS = OrderedDict([
 RE_WORDS = re.compile(r"[^\w’']+")
 
 
-def _normalize_word(word):
-    return word.strip().lower().replace("’", "'")
-
-
-def get_word_pov(word, pov_words=POV_WORDS, normalize_words=True):
-    if normalize_words:
-        word = _normalize_word(word)
+def get_word_pov(word, pov_words=POV_WORDS):
     for pov in pov_words:
-        if word in pov_words[pov]:
+        if word.lower().replace("’", "'") in (
+                pov_word.lower() for pov_word in pov_words[pov]):
             return pov
     return None
 
 
-def parse_pov_words(text, pov_words=POV_WORDS, normalize_words=True):
+def parse_pov_words(text, pov_words=POV_WORDS):
     text_pov_words = {}
     words = re.split(RE_WORDS, text.strip().lower())
     for pov in pov_words:
         text_pov_words[pov] = []
     for word in words:
-        word_pov = get_word_pov(word, pov_words, normalize_words)
+        word_pov = get_word_pov(word, pov_words)
         if word_pov != None:
             text_pov_words[word_pov].append(word)
     return text_pov_words
 
 
-def get_text_pov(text, pov_words=POV_WORDS, normalize_words=True):
-    text_pov_words = parse_pov_words(text, pov_words, normalize_words)
+def get_text_pov(text, pov_words=POV_WORDS):
+    text_pov_words = parse_pov_words(text, pov_words)
     for pov in POV_WORDS:
         if len(text_pov_words[pov]) > 0:
             return pov
