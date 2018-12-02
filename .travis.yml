@@ -12,9 +12,10 @@ sudo: false
 install:
 - pip install -U pip
 - pip install -U pytest
-script:
+- pip install -U twine
 - python ./setup.py develop
-- pytest tests/*
+script:
+- pytest ./tests/
 deploy:
   provider: pypi
   user: davidlday
