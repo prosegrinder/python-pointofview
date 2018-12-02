@@ -10,6 +10,12 @@ import pkg_resources
 __version__ = pkg_resources.resource_string(
     'pointofview', 'VERSION').decode('utf-8').strip()
 
+# Constants for use in comparisons
+FIRST = 'first'
+SECOND = 'second'
+THIRD = 'third'
+NONE = None
+
 # NOTE:
 # Words are expected to be in lower case.
 #
@@ -18,13 +24,13 @@ __version__ = pkg_resources.resource_string(
 # Second person PoV can also contain third person words.
 # Third person PoV can only contain third person words.
 POV_WORDS = OrderedDict([
-    ('first',
+    (FIRST,
         ["i", "i'm", "i'll", "i'd", "i've", "me", "mine", "myself", "we",
             "we're", "we'll", "we'd", "we've", "us", "ours", "ourselves"]),
-    ('second',
+    (SECOND,
         ["you", "you're", "you'll", "you'd", "you've",
             "your", "yours", "yourself", "yourselves"]),
-    ('third',
+    (THIRD,
         ["he", "he's", "he'll", "he'd", "him", "his", "himself", "she", "she's",
             "she'll", "she'd", "her", "hers", "herself", "it", "it's", "it'll",
             "it'd", "itself", "they", "they're", "they'll", "they'd", "they've",

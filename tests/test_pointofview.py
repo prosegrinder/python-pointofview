@@ -32,14 +32,14 @@ Due to pytest‘s detailed assertion introspection, only plain assert statements
 # https://docs.pytest.org/en/latest/index.html
 
 def test_first():
-    assert(pointofview.get_text_pov(POV_FIRST_SINGULAR) == 'first')  # nosec
-    assert(pointofview.get_text_pov(POV_FIRST_PLURAL) == 'first')    # nosec
+    assert(pointofview.get_text_pov(POV_FIRST_SINGULAR) == pointofview.FIRST)  # nosec
+    assert(pointofview.get_text_pov(POV_FIRST_PLURAL) == pointofview.FIRST)    # nosec
 
 def test_second():
-    assert(pointofview.get_text_pov(POV_SECOND) == 'second')         # nosec
+    assert(pointofview.get_text_pov(POV_SECOND) == pointofview.SECOND)         # nosec
 
 def test_third():
-    assert(pointofview.get_text_pov(POV_THIRD) == 'third')           # nosec
+    assert(pointofview.get_text_pov(POV_THIRD) == pointofview.THIRD)           # nosec
 
 def test_none():
-    assert(pointofview.get_text_pov(POV_NONE) == None)               # nosec
+    assert(pointofview.get_text_pov(POV_NONE) == pointofview.NONE)               # nosec
