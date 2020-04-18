@@ -5,9 +5,9 @@ pointofview
     :target: https://pypi.python.org/pypi/pointofview
     :alt: Latest PyPI version
 
-.. image:: https://travis-ci.org/prosegrinder/python-pointofview.svg?branch=master
-    :target: https://travis-ci.org/prosegrinder/python-pointofview
-    :alt: Latest Travis CI build status
+.. image:: https://github.com/prosegrinder/python-pointofview/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/prosegrinder/python-pointofview/actions?query=workflow%3A%22Python+CI%22+branch%3Amaster
+    :alt: GitHub Workflow Status
 
 .. image:: https://api.codacy.com/project/badge/Grade/df0afcc70ffc4a86a8777588567820c0
     :target: https://www.codacy.com/app/ProseGrinder/python-pointofview?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=prosegrinder/python-pointofview&amp;utm_campaign=Badge_Grade
