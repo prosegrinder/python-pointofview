@@ -5,8 +5,8 @@ pointofview
     :target: https://pypi.python.org/pypi/pointofview
     :alt: Latest PyPI version
 
-.. image:: https://github.com/prosegrinder/python-pointofview/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/prosegrinder/python-pointofview/actions?query=workflow%3A%22Python+CI%22+branch%3Amaster
+.. image:: https://github.com/prosegrinder/python-pointofview/workflows/Python%20CI/badge.svg?branch=main
+    :target: https://github.com/prosegrinder/python-pointofview/actions?query=workflow%3A%22Python+CI%22+branch%3Amain
     :alt: GitHub Workflow Status
 
 .. image:: https://api.codacy.com/project/badge/Grade/df0afcc70ffc4a86a8777588567820c0
