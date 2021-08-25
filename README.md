@@ -51,7 +51,9 @@ None
 ```
 
 `parse_pov_words()` returns a dict containing all first-, second-, and
-third-person pov words:
+third-person point-of-view words:
+
+<!-- markdownlint-disable MD013 -->
 
 ```python
 >>> text = """
@@ -60,3 +62,5 @@ third-person pov words:
 >>> pointofview.parse_pov_words(text)
 {'first': ['i', 'i'], 'second': [], 'third': []}
 ```
+
+<!-- markdownlint-enable MD013 -->
