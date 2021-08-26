@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """pointofview
 
 A Python package for determining a piece of text's
