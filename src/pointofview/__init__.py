@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
+"""pointofview
 
-"""pointofview - A Python package for determining a piece of text's point of view (first, second, third, or unknown)."""
+A Python package for determining a piece of text's
+point of view (first, second, third, or unknown).
+"""
 
 import re
 from collections import OrderedDict
@@ -100,7 +102,22 @@ POV_WORDS = OrderedDict(
 RE_WORDS = re.compile(r"[^\w’']+")
 
 
-def get_word_pov(word, pov_words=POV_WORDS):
+def get_word_pov(word, pov_words=None):
+    """Get the point-of-view indicated by the word
+
+    Parameters:
+    ----------
+    word : str
+        The English-langauge word to find the point-of-view for
+
+    Returns:
+    -------
+    str
+        the point-of-view indicated by the word (first, second, third)
+        returns None if no point-of-view indicated
+    """
+    if pov_words is None:
+        pov_words = POV_WORDS
     for pov in pov_words:
         if word.lower().replace("’", "'") in (
             pov_word.lower() for pov_word in pov_words[pov]
@@ -109,19 +126,46 @@ def get_word_pov(word, pov_words=POV_WORDS):
     return None
 
 
-def parse_pov_words(text, pov_words=POV_WORDS):
+def parse_pov_words(text, pov_words=None):
+    """Parse out all the point-of-view indicator words in text
+
+    Parameters:
+    ----------
+    text : str
+        a block of english languaget text
+
+    Returns:
+    -------
+    list[str]
+        a list of point-of-view indicator words
+    """
+    if pov_words is None:
+        pov_words = POV_WORDS
     text_pov_words = {}
     words = re.split(RE_WORDS, text.strip().lower())
     for pov in pov_words:
         text_pov_words[pov] = []
     for word in words:
         word_pov = get_word_pov(word, pov_words)
-        if word_pov != None:
+        if word_pov is not None:
             text_pov_words[word_pov].append(word)
     return text_pov_words
 
 
-def get_text_pov(text, pov_words=POV_WORDS):
+def get_text_pov(text, pov_words=None):
+    """Get the point-of-view of a piece of text
+
+    Parameters:
+    ----------
+    text : str
+        a block of english languaget text
+
+    Returns:
+    -------
+    str
+        the point-of-view of the text (first, second, third)
+        returns None if no point-of-view words found
+    """
     text_pov_words = parse_pov_words(text, pov_words)
     for pov in POV_WORDS:
         if len(text_pov_words[pov]) > 0:
