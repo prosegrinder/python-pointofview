@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "pointofview"
-version = "1.0.2"
+version = "1.0.3"
 description = "A Python package for determining a piece of text's point of view (first, second, third, or unknown)."
 authors = ["David L. Day <david@davidlday.com>"]
 license = "GPLv3"
