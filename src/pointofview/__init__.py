@@ -11,7 +11,7 @@ import sys
 from collections import OrderedDict
 
 if sys.version_info >= (3, 9):
-    from importlib import metadata, resources
+    from importlib import metadata
 else:
     import importlib_metadata as metadata
 
