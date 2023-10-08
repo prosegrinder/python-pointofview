@@ -18,5 +18,5 @@ jobs:
   cz-dry-run:
     needs: test
     uses: prosegrinder/.github/.github/workflows/cz-dry-run.yaml@main
-    with:
+    secrets:
       VERSION_BUMP_TAG_TOKEN: ${{ secrets.VERSION_BUMP_TAG_TOKEN }}
