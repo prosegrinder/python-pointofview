@@ -25,7 +25,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           token: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
-          submodules: true
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@0.18.2
         with:
