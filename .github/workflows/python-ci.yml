@@ -20,10 +20,12 @@ jobs:
     name: "Dry run Commitizen bump"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Create bump and changelog
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Dry-run bump and changelog
         uses: commitizen-tools/commitizen-action@0.18.2
         with:
           github_token: ${{ secrets.VERSION_BUMP_TAG_TOKEN }}
