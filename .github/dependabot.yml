@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: pip
     directory: "/"
     commit-message:
-      prefix: "patch"
+      prefix: "fix"
       prefix-development: "build"
       include: "scope"
     schedule:
