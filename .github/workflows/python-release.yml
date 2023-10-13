@@ -15,10 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: true
           token: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
       - name: Create bump and changelog
         id: cz
