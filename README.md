@@ -1,7 +1,7 @@
 # pointofview
 
 [![Latest PyPI version](https://img.shields.io/pypi/v/pointofview.svg)](https://pypi.python.org/pypi/pointofview)
-[![GitHub Workflow Status](https://github.com/prosegrinder/python-pointofview/workflows/Python%20CI/badge.svg?branch=main)](https://github.com/prosegrinder/python-pointofview/actions?query=workflow%3A%22Python+CI%22+branch%3Amain)
+[![Python Poetry CI](https://github.com/prosegrinder/python-pointofview/actions/workflows/python-ci.yml/badge.svg)](https://github.com/prosegrinder/python-pointofview/actions/workflows/python-ci.yml)
 
 A Python package for determining a piece of text's point of view (first, second,
 third, or unknown).
