@@ -17,6 +17,7 @@ name = "pointofview"
 version = "1.0.4"
 description = "A Python package for determining a piece of text's point of view (first, second, third, or unknown)."
 authors = ["David L. Day <david@davidlday.com>"]
+required-python = ">=3.9"
 license = "GPLv3"
 homepage = "https://github.com/prosegrinder/pointofview"
 repository = "https://github.com/prosegrinder/pointofview"
@@ -38,7 +39,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7.2"
+python = ">=3.9,<4.0"
 importlib-metadata = ">=5.1,<7.0"
 
 [tool.poetry.group.dev.dependencies]
