@@ -111,7 +111,7 @@ def get_word_pov(
     word : str
         The English-langauge word to find the point-of-view for
 
-    pov_words : dict, optional
+    pov_words : OrderedDict[str, list[str]], optional
         A dictionary of point-of-view words to use for comparison.
         If None, the default POV_WORDS will be used.
 
@@ -141,14 +141,14 @@ def parse_pov_words(
     text : str
         a block of english language text
 
-    pov_words : dict, optional
+    pov_words : OrderedDict[str, list[str]], optional
         A dictionary of point-of-view words to use for comparison.
         If None, the default POV_WORDS will be used.
 
     Returns:
     -------
     list[str]
-        a list of point-of-view indicator words
+        a list of point-of-view indicator words or None if no words found
     """
     if pov_words is None:
         pov_words = POV_WORDS
@@ -173,7 +173,7 @@ def get_text_pov(
     text : str
         a block of english language text
 
-    pov_words : dict, optional
+    pov_words : OrderedDict[str, list[str]], optional
         A dictionary of point-of-view words to use for comparison.
         If None, the default POV_WORDS will be used.
 
