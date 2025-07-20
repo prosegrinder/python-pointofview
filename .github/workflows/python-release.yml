@@ -1,5 +1,8 @@
 name: Bump Version and Create Release
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -10,27 +13,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  bump-and-release:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
-    runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
-      - name: Create bump and changelog
-        id: cz
-        uses: commitizen-tools/commitizen-action@0.24.0
-        with:
-          commit: true
-          push: true
-          github_token: ${{ secrets.VERSION_BUMP_TAG_TOKEN }}
-          changelog_increment_filename: "release-body.md"
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          body_path: "release-body.md"
-          tag_name: v${{ steps.cz.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  black:
+    uses: prosegrinder/.github/.github/workflows/poetry-black.yaml@main
+
+  pylint:
+    uses: prosegrinder/.github/.github/workflows/poetry-pylint.yaml@main
+
+  mypy:
+    uses: prosegrinder/.github/.github/workflows/poetry-mypy.yaml@main
+
+  bandit:
+    uses: prosegrinder/.github/.github/workflows/poetry-bandit.yaml@main
+
+  test:
+    needs:
+      - pylint
+      - black
+      - mypy
+      - bandit
+    uses: prosegrinder/.github/.github/workflows/poetry-test.yaml@main
+
+  release:
+    needs: test
+    if: ${{ !startsWith(github.event.head_commit.message, 'bump:') }}
+    # Don't run 'bump:'
+    permissions:
+      contents: write
+    uses: prosegrinder/.github/.github/workflows/poetry-release.yaml@main
+    secrets:
+      VERSION_BUMP_TAG_TOKEN: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
