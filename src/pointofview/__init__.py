@@ -8,7 +8,9 @@ point of view (first, second, third, or unknown).
 
 import re
 import sys
-from collections import OrderedDict
+from typing import Literal, OrderedDict
+
+# from collections import OrderedDict
 
 if sys.version_info >= (3, 9):
     from importlib import metadata
@@ -30,7 +32,7 @@ NONE = None
 # First person PoV can also contain second and third person words.
 # Second person PoV can also contain third person words.
 # Third person PoV can only contain third person words.
-POV_WORDS = OrderedDict(
+POV_WORDS: OrderedDict[str, list[str]] = OrderedDict(
     [
         (
             FIRST,
@@ -106,13 +108,19 @@ POV_WORDS = OrderedDict(
 RE_WORDS = re.compile(r"[^\w’']+")
 
 
-def get_word_pov(word, pov_words=None):
+def get_word_pov(
+    word: str, pov_words: OrderedDict[str, list[str]] | None = None
+) -> str | None:
     """Get the point-of-view indicated by the word
 
     Parameters:
     ----------
     word : str
         The English-langauge word to find the point-of-view for
+
+    pov_words : dict, optional
+        A dictionary of point-of-view words to use for comparison.
+        If None, the default POV_WORDS will be used.
 
     Returns:
     -------
@@ -130,13 +138,19 @@ def get_word_pov(word, pov_words=None):
     return None
 
 
-def parse_pov_words(text, pov_words=None):
+def parse_pov_words(
+    text: str, pov_words: OrderedDict[str, list[str]] | None = None
+) -> OrderedDict[str, list[str]]:
     """Parse out all the point-of-view indicator words in text
 
     Parameters:
     ----------
     text : str
-        a block of english languaget text
+        a block of english language text
+
+    pov_words : dict, optional
+        A dictionary of point-of-view words to use for comparison.
+        If None, the default POV_WORDS will be used.
 
     Returns:
     -------
@@ -145,8 +159,8 @@ def parse_pov_words(text, pov_words=None):
     """
     if pov_words is None:
         pov_words = POV_WORDS
-    text_pov_words = {}
-    words = re.split(RE_WORDS, text.strip().lower())
+    text_pov_words: OrderedDict[str, list[str]] = OrderedDict()
+    words: list[str] = re.split(RE_WORDS, text.strip().lower())
     for pov in pov_words:
         text_pov_words[pov] = []
     for word in words:
@@ -156,13 +170,19 @@ def parse_pov_words(text, pov_words=None):
     return text_pov_words
 
 
-def get_text_pov(text, pov_words=None):
+def get_text_pov(
+    text: str, pov_words: OrderedDict[str, list[str]] | None = None
+) -> str | None:
     """Get the point-of-view of a piece of text
 
     Parameters:
     ----------
     text : str
-        a block of english languaget text
+        a block of english language text
+
+    pov_words : dict, optional
+        A dictionary of point-of-view words to use for comparison.
+        If None, the default POV_WORDS will be used.
 
     Returns:
     -------
@@ -170,7 +190,7 @@ def get_text_pov(text, pov_words=None):
         the point-of-view of the text (first, second, third)
         returns None if no point-of-view words found
     """
-    text_pov_words = parse_pov_words(text, pov_words)
+    text_pov_words: OrderedDict[str, list[str]] = parse_pov_words(text, pov_words)
     for pov in POV_WORDS:
         if len(text_pov_words[pov]) > 0:
             return pov
