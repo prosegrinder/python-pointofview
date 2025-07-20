@@ -1,3 +1,15 @@
+## v1.1.0 (2025-07-20)
+
+### Feat
+
+- add types (#57)
+- add types and type marker
+
+### Fix
+
+- use Optional instead of | for optional types
+- organize and remove unused imports
+
 ## v1.0.4 (2022-12-19)
 
 ### Fix
