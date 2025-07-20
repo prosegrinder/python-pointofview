@@ -1,27 +1,33 @@
+[project]
+name = "pointofview"
+dynamic = ["version","classifiers"]
+description = "A Python package for determining a piece of text's point of view (first, second, third, or unknown)."
+license = "GPL-3.0-or-later"
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+authors = [{ name = "David L. Day", email = "david@davidlday.com"}]
+keywords = ["point of view", "text analysis", "natural language processing"]
+dependencies = [
+  "importlib-metadata>=5.1,<7.0",
+]
+
+[project.urls]
+homepage = "https://github.com/prosegrinder/python-pointofview"
+repository = "https://github.com/prosegrinder/python-pointofview"
+
 [tool.commitizen]
-version = "1.0.4"
 tag_format = "v$version"
 update_changelog_on_bump = true
 changelog_incremental = true
 bump_message = "bump: $current_version → $new_version"
-version_files = [
-  "pyproject.toml:version",
-]
+version_provider = "poetry"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "pointofview"
 version = "1.0.4"
-description = "A Python package for determining a piece of text's point of view (first, second, third, or unknown)."
-authors = ["David L. Day <david@davidlday.com>"]
-requires-python = ">=3.9"
-license = "GPLv3"
-homepage = "https://github.com/prosegrinder/pointofview"
-repository = "https://github.com/prosegrinder/pointofview"
-readme = "README.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -37,10 +43,6 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "Typing :: Typed",
 ]
-
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-importlib-metadata = ">=5.1,<7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
