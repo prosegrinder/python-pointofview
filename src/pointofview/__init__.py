@@ -8,7 +8,7 @@ point of view (first, second, third, or unknown).
 
 import re
 from importlib import metadata
-from typing import OrderedDict
+from typing import OrderedDict, Optional
 
 __version__ = metadata.version(__name__)
 
@@ -102,8 +102,8 @@ RE_WORDS = re.compile(r"[^\w’']+")
 
 
 def get_word_pov(
-    word: str, pov_words: OrderedDict[str, list[str]] | None = None
-) -> str | None:
+    word: str, pov_words: Optional[OrderedDict[str, list[str]]] = None
+) -> Optional[str]:
     """Get the point-of-view indicated by the word
 
     Parameters:
@@ -132,7 +132,7 @@ def get_word_pov(
 
 
 def parse_pov_words(
-    text: str, pov_words: OrderedDict[str, list[str]] | None = None
+    text: str, pov_words: Optional[OrderedDict[str, list[str]]] = None
 ) -> OrderedDict[str, list[str]]:
     """Parse out all the point-of-view indicator words in text
 
@@ -164,8 +164,8 @@ def parse_pov_words(
 
 
 def get_text_pov(
-    text: str, pov_words: OrderedDict[str, list[str]] | None = None
-) -> str | None:
+    text: str, pov_words: Optional[OrderedDict[str, list[str]]] = None
+) -> Optional[str]:
     """Get the point-of-view of a piece of text
 
     Parameters:
