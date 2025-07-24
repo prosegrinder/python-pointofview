@@ -1,3 +1,10 @@
+## v1.1.2 (2025-07-24)
+
+### Fix
+
+- remove typing deprecations (#62)
+- use OrderedDict from collections instead of deprecated typing
+
 ## v1.1.1 (2025-07-20)
 
 ### Fix
