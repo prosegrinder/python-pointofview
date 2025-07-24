@@ -7,8 +7,9 @@ point of view (first, second, third, or unknown).
 """
 
 import re
+from collections import OrderedDict
 from importlib import metadata
-from typing import OrderedDict, Optional
+from typing import Optional
 
 __version__ = metadata.version(__name__)
 
